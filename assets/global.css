@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+:root {
+  --color-primary: 200 100% 50%;
+  --background: 0 0% 99%;
+  --muted: 0 0% 50%;
+}
