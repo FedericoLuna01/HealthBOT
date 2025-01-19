@@ -48,7 +48,7 @@ export default function Index() {
           </View>
         <Text className="text-muted uppercase">Bienvenido a Healthbot</Text>
         <Text className="text-4xl font-bold mt-2 text-center">
-          Controla tu salud desde <Text className="text-primary">la palma de tu mano</Text>
+          Controla tu salud desde <Text className="text-primary">la palma de tu mano!!!!</Text>
         </Text>
         <View className="items-center justify-center mt-10">
           <Text className="text-muted text-center">
