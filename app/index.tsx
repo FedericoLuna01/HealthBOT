@@ -57,19 +57,30 @@ export default function Index() {
             Inicia sesión en Healthbot
           </Text>
           <TouchableOpacity
-            className="bg-primary px-4 py-2 rounded-lg mt-2 flex items-center flex-row gap-2"
-            // onPress={handleGoogleSignIn}
+            className='mt-2 bg-primary px-4 py-2 rounded-lg'
+          // onPress={handleGoogleSignIn}
           >
-            <Link href="/home">
+            <Link
+              href="/onboarding"
+              // className='flex items-center gap-2 justify-center'
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
               <Image
                 source={require("../assets/images/google-logo.png")}
-                className="w-5 h-5"
+                className="w-6 h-6"
               />
-              <Text className="text-white font-bold text-xl">
-                Continuar con Google
-              </Text>
+              <Text className="text-white font-bold text-xl" >Continuar con Google</Text>
             </Link>
           </TouchableOpacity>
+          <Link
+              href="/home"
+            >
+              <Text>Home</Text>
+            </Link>
         </View>
       </LinearGradient>
     </SafeAreaView>
