@@ -5,12 +5,49 @@ import {
   TextInput,
   View,
   TouchableOpacity,
+  Keyboard,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons"; // Import el ícono de Ionicons
+
+const QUESTIONS = [
+  {
+    id: 1,
+    question: "Los últimos días tuve dolores de cabeza recurrentes. ¿Qué puedo hacer?",
+  },
+  {
+    id: 2,
+    question: "Los últimos días tuve dolores de cabeza recurrentes. ¿Qué puedo hacer?",
+  },
+  {
+    id: 3,
+    question: "Los últimos días tuve dolores de cabeza recurrentes. ¿Qué puedo hacer?",
+  },
+]
 
 const Home = () => {
   const [inquietud, setInquietud] = useState("");
+  const [isKeyboardActive, setIsKeyboardActive] = useState(false)
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setIsKeyboardActive(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setIsKeyboardActive(false);
+      }
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
 
   // Función para manejar el envío
   const handleEnviar = () => {
@@ -25,26 +62,21 @@ const Home = () => {
           <Text className="text-primary text-3xl font-bold mt-1 text-center">
             En qué puedo ayudarte hoy?
           </Text>
-          <View className="max-w-sm border border-muted rounded-lg p-4">
-            <Text className="text-center text-muted">
-              Los últimos días tuve dolores de cabeza recurrentes. ¿Qué puedo
-              hacer?
-            </Text>
-          </View>
-          <View className="max-w-sm border border-muted rounded-lg p-4">
-            <Text className="text-center text-muted">
-              Los últimos días tuve dolores de cabeza recurrentes. ¿Qué puedo
-              hacer?
-            </Text>
-          </View>
-          <View className="flex justify-center items-center flex-row space-x-4">
-            <View className="max-w-sm border border-muted rounded-lg p-4">
-              <Text className="text-center text-muted">
-                Los últimos días tuve dolores de cabeza recurrentes. ¿Qué puedo
-                hacer?
-              </Text>
-            </View>
-          </View>
+          {
+            !isKeyboardActive && (
+              <View>
+                {
+                  QUESTIONS.map((item) => (
+                    <View className="max-w-sm border border-muted rounded-lg p-4">
+                      <Text className="text-center text-muted">
+                        {item.question}
+                      </Text>
+                    </View>
+                  ))
+                }
+              </View>
+            )
+          }
         </View>
         {/* Input al final */}
         <View className="w-full px-4 mt-auto mb-4">
